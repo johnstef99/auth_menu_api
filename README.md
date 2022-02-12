@@ -11,3 +11,7 @@ for apps like Discord**.
 | `/api/menu/today`        | `GET`  | Get menu for today                                                         |
 | `/api/menu/weekday/:day` | `GET`  | Get menu for specific weekday `day` is an `int`, _1->Monday ... 7->Sunday_ |
 | `/api/menu/fetch`        | `GET`  | Try to fetch menu from [webpage](https://www.auth.gr/weekly-menu/)         |
+
+Take a look at the [example](./example.json) to see the structure of the response
+
+An instance of this API is hosted at [lesxi.johnstef.com](http://lesxi.johnstef.com/api/menu)
