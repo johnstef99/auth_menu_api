@@ -15,3 +15,5 @@ for apps like Discord**.
 Take a look at the [example](./example.json) to see the structure of the response
 
 An instance of this API is hosted at [lesxi.johnstef.com](http://lesxi.johnstef.com/api/menu)
+
+Siri shortcut: [download](https://www.icloud.com/shortcuts/767daf1ee3124e6ca9b65a75e411ed72) (You need to enable untrusted shortcuts from settings)
