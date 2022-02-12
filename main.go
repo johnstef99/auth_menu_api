@@ -8,8 +8,14 @@ import (
 
 const cacheFileName string = "cache.json"
 
-func main() {
+var loadedMenu *WeekMenu
 
+func main() {
+	loadedMenu = loadWeekMenu()
+	serveAPI()
+}
+
+func loadWeekMenu() *WeekMenu {
 	weekMenu, err := readWeekMenuFromFile(cacheFileName)
 	if os.IsNotExist(err) {
 		log.Println("Cache file doesn't exists")
@@ -22,9 +28,7 @@ func main() {
 	} else if err != nil {
 		log.Fatal(err)
 	}
-
-	// TODO: create REST API to retrieve the data
-
+	return weekMenu
 }
 
 func updateMenu(weekMenu *WeekMenu) bool {
