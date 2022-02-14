@@ -32,8 +32,9 @@ func loadWeekMenu() *WeekMenu {
 }
 
 func updateMenu(weekMenu *WeekMenu) bool {
-	weekMenu, ok := NewWeekMenuFromWeb()
+	newMenu, ok := NewWeekMenuFromWeb()
 	if ok {
+		*weekMenu = *newMenu
 		writeWeekMenuToFile(weekMenu, cacheFileName)
 	} else {
 		log.Println("Cache was not updated because no new data was received")
