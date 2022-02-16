@@ -30,11 +30,23 @@ func getMenuByWeekday(c *gin.Context) {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Allowed weekdays is 1->7 for Monday->Sunday"})
 		return
 	}
-	c.IndentedJSON(http.StatusOK, loadedMenu.menuOfWeekday(Weekday(day)))
+
+	dm := loadedMenu.menuOfWeekday(Weekday(day))
+	getDayMenu(c, &dm)
 }
 
 func getTodayMenu(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, loadedMenu.menuOfWeekday(getTodayWeekday()))
+	dm := loadedMenu.menuOfWeekday(getTodayWeekday())
+	getDayMenu(c, &dm)
+}
+
+func getDayMenu(c *gin.Context, dm *DayMenu) {
+	desc, err := strconv.ParseBool(c.Query("description"))
+	if err == nil && desc {
+		c.IndentedJSON(http.StatusOK, dm.description())
+		return
+	}
+	c.IndentedJSON(http.StatusOK, dm)
 }
 
 func fetchMenu(c *gin.Context) {

@@ -38,6 +38,24 @@ type Menu struct {
 	Fruit   bool     `json:"fruit"`
 }
 
+func (m Menu) description() string {
+	desc := ""
+	contain := [4][]string{m.First, m.Salad, m.Main, m.Dessert}
+
+	for _, d := range contain {
+		for i, v := range d {
+			if i == 0 {
+				desc += "- " + v
+			} else {
+				desc += "  " + v
+			}
+			desc += "\n"
+		}
+	}
+
+	return desc
+}
+
 func getMaxInt(values ...int) int {
 	max := math.MinInt
 	for _, v := range values {
@@ -82,6 +100,14 @@ type DayMenu struct {
 	Date   time.Time `json:"date"`
 	Lunch  Menu      `json:"lunch"`
 	Dinner Menu      `json:"dinner"`
+}
+
+func (dm DayMenu) description() map[string]interface{} {
+	return map[string]interface{}{
+		"lunch":  dm.Lunch.description(),
+		"dinner": dm.Dinner.description(),
+		"date":   dm.Date,
+	}
 }
 
 func NewDayMenuFromArray(array MenuArray) *DayMenu {
