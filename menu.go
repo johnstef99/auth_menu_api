@@ -53,7 +53,7 @@ func (m Menu) description() string {
 		}
 	}
 
-	return desc
+	return strings.Trim(desc, "\n")
 }
 
 func getMaxInt(values ...int) int {
